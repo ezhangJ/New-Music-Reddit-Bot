@@ -1,0 +1,63 @@
+Eric Zhang
+12/23/17
+
+Creating reddit bot using PRAW and python
+
+Downloaded PRAW (Python Reddit API Wrapper)
+https://praw.readthedocs.io/en/latest/getting_started/quick_start.html
+https://praw.readthedocs.io/en/latest/getting_started/installation.html
+	(in cmd prompt)
+	pip install prawl
+
+Want to create bot that will go on r/listentothis and browse the top
+posts for the most popular links with a specific genre in mind.
+The bot will record those posts and links into a text file.
+
+The line
+
+	submissions = reddit.subreddit('listentothis').hot(limit=10)
+
+	Output: AttributeError: 'Subreddit' object has no attribute 'get_top'
+
+was not working correctly, but the line below worked to get the hot posts
+	
+	submissions = reddit.subreddit('listentothis').hot(limit=10)
+
+
+When running the bot encountered error 
+	File "music_bot.py", line 54, in run_bot
+    f.write(song.title)
+	UnicodeEncodeError: 'ascii' codec can't encode character u'\u2014' in position 10: ordinal not in range(128)
+
+Needed to change encoding with these lines of code 
+	# encoding=utf8
+	import sys
+	reload(sys)
+	sys.setdefaultencoding('utf8')
+	
+
+
+Automating 
+--------------------------
+
+http://pythonforengineers.com/build-a-reddit-bot-part-3-automate-your-bot/
+
+downloaded Vagrant
+
+needed to also install VirtualBox
+https://www.virtualbox.org/wiki/Downloads
+
+error occured during vagrant up because there was a space in file location, needed to change
+location
+
+vagrant init hashicorp/precise32
+vagrant up
+vagrant ssh
+cd /vagrant/
+
+sudo apt-get update -y
+sudo apt-get install python-pip -y
+sudo apt-get install git -y
+sudo pip install praw
+ 
+git clone https://github.com/shantnu/RedditBot.git
