@@ -39,7 +39,7 @@ Needed to change encoding with these lines of code
 
 Automating 
 --------------------------
-
+follow instructions from link
 http://pythonforengineers.com/build-a-reddit-bot-part-3-automate-your-bot/
 
 downloaded Vagrant
@@ -50,14 +50,34 @@ https://www.virtualbox.org/wiki/Downloads
 error occured during vagrant up because there was a space in file location, needed to change
 location
 
-vagrant init hashicorp/precise32
-vagrant up
-vagrant ssh
-cd /vagrant/
+in shell:
+	vagrant init hashicorp/precise32
+	vagrant up
+	vagrant ssh
+	cd /vagrant/
 
-sudo apt-get update -y
-sudo apt-get install python-pip -y
-sudo apt-get install git -y
-sudo pip install praw
- 
-git clone https://github.com/shantnu/RedditBot.git
+	sudo apt-get update -y
+	sudo apt-get install python-pip -y
+	sudo apt-get install git -y
+	sudo pip install praw
+	 
+	git clone https://github.com/ezhangJ/New-Music-Reddit-Bot.git
+
+
+	crontab -e
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/ed
+  2. /bin/nano        <---- easiest
+  3. /usr/bin/vim.tiny
+
+Typed this into new cron file to find new music every day at 2:00
+
+  00 2 * * * cd /vagrant/New-Music-Reddit-Bot/; ./music_bot.py
+
+save and exit
+C-o 
+C-x
+
+Can access playlist.txt in ﻿vagrant@precise32:/vagrant/New-Music-Reddit-Bot
+in the virtual machine
