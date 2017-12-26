@@ -6,6 +6,8 @@ in the reddit account.
 created by Eric Zhang 
 '''
 
+#!/usr/bin/python
+
 import praw 
 import os
 import sys
